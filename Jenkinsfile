@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        JFROG_URL = 'http://44.201.224.245:8082/artifactory'
+        JFROG_URL = 'http://localhost:8082/artifactory'
         REPO_NAME = 'jenkins-builds'
         ARTIFACT_NAME = "jfrog-demo-${BUILD_NUMBER}.zip"
     }
