@@ -1,5 +1,6 @@
-cat > README.md <<'EOF'
-# JFrog Pipeline Demo
-
-This project creates a simple build artifact and uploads it to JFrog Artifactory using Jenkins pipeline.
-EOF
+- name: Build artifact
+  run: |
+    mkdir -p build
+    cp app.py build/
+    zip -r "$ARTIFACT_NAME" build/
+    ls -lh "$ARTIFACT_NAME"
