@@ -1,0 +1,34 @@
+name: Build and Upload to JFrog
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-upload:
+    runs-on: ubuntu-latest
+
+    env:
+      JFROG_URL: http://44.201.224.245:8082/artifactory
+      REPO_NAME: jenkins-builds
+      ARTIFACT_NAME: jfrog-demo-${{ github.run_number }}.zip
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build artifact
+        run: |
+          mkdir -p build
+          cp app.py build/
+          cp README.md build/
+          zip -r "$ARTIFACT_NAME" build/
+          ls -lh "$ARTIFACT_NAME"
+
+      - name: Upload artifact to JFrog
+        run: |
+          curl -f -u "${{ secrets.JFROG_USER }}:${{ secrets.JFROG_TOKEN }}" \
+          -T "$ARTIFACT_NAME" \
+          "$JFROG_URL/$REPO_NAME/$ARTIFACT_NAME"
