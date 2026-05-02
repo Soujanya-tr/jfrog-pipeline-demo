@@ -1,0 +1,5 @@
+cat > README.md <<'EOF'
+# JFrog Pipeline Demo
+
+This project creates a simple build artifact and uploads it to JFrog Artifactory using Jenkins pipeline.
+EOF
