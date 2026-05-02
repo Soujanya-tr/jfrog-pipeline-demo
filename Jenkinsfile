@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'jfrog' }
+    agent any
 
     environment {
         JFROG_URL = 'http://localhost:8082/artifactory'
@@ -11,15 +11,6 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 checkout scm
-            }
-        }
-
-        stage('Verify Files') {
-            steps {
-                sh '''
-                pwd
-                ls -la
-                '''
             }
         }
 
@@ -60,7 +51,7 @@ pipeline {
             echo 'SUCCESS: Artifact uploaded to JFrog.'
         }
         failure {
-            echo 'FAILED: Check console output.'
+            echo 'FAILED: Check logs.'
         }
     }
 }
