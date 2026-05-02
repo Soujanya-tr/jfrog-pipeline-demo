@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      JFROG_URL: http://44.201.224.245:8082/artifactory
+      JFROG_URL: http://44.203.41.114:8082/artifactory
       REPO_NAME: jenkins-builds
       ARTIFACT_NAME: jfrog-demo-${{ github.run_number }}.zip
 
